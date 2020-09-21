@@ -64,9 +64,6 @@ public class ChatController implements OnMessageListener, OnConnectionListener{
 			break;
 		case "DirectMessage":
 			DirectMessage dm = gson.fromJson(msg, DirectMessage.class);
-//			Message normal = new Message(dm.getFromClient(),dm.getBody());
-//			String json = gson.toJson(normal);
-//			connection.sendDirectMessage(dm.getToClient(), json);
 			connection.sendDirectMessage(dm.getToClient(), msg);
 			break;
 		case "User":
@@ -74,6 +71,9 @@ public class ChatController implements OnMessageListener, OnConnectionListener{
 			s.setUsername(u.getUsername());
 			//Existe
 			boolean exists = connection.userExists(u);
+			if(u.getUsername().isEmpty()) {
+				exists = true;
+			}
 			ConnectionPossible cp = new ConnectionPossible(!exists);
 			String jsonConnection = gson.toJson(cp);
 			connection.sendApproval(s, jsonConnection);
