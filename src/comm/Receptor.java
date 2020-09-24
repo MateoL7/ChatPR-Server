@@ -1,9 +1,6 @@
 package comm;
 import java.io.*;
 
-import javafx.scene.control.Alert;
-import javafx.stage.StageStyle;
-
 public class Receptor extends Thread {
 
 	private InputStream is;

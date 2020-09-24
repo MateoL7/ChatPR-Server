@@ -13,7 +13,6 @@ import model.ConnectionPossible;
 import model.DirectMessage;
 import model.Generic;
 import model.Members;
-import model.Message;
 import model.User;
 import comm.Receptor.OnMessageListener;
 import comm.Session;
@@ -24,8 +23,6 @@ public class ChatController implements OnMessageListener, OnConnectionListener{
 	private ChatWindow view;
 	private TCPConnection connection;
 	
-	private String username;
-
 	public ChatController(ChatWindow view) {
 		this.view = view;
 		init();
@@ -85,7 +82,6 @@ public class ChatController implements OnMessageListener, OnConnectionListener{
 			//No existe
 			else {
 				connection.addUserToConnect(s, u);
-				username = u.getUsername();
 			}
 			break;
 		case "ConnectionPossible":
